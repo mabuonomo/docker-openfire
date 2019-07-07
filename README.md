@@ -3,6 +3,9 @@
 This docker setup contains a stack with:
 * openfire v4.4.0
 
+## What is Openfire?
+Openfire is a real time collaboration (RTC) server licensed under the Open Source Apache License. It uses the only widely adopted open protocol for instant messaging, XMPP (also called Jabber). (https://www.igniterealtime.org/projects/openfire/)
+
 ## Official image on Docker Hub
 https://cloud.docker.com/repository/docker/sharksoft/openfire
 

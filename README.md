@@ -3,6 +3,9 @@
 This docker setup contains a stack with:
 * openfire v4.4.0
 
+## Official image on Docker Hub
+https://cloud.docker.com/repository/docker/sharksoft/openfire
+
 ## Quickstart
 Start Openfire/MySQL using:
 

@@ -1,4 +1,4 @@
-FROM openjdk:11
+FROM openjdk:11.0.3-jdk-slim-stretch
 
 ENV OPENFIRE_VERSION=4.4.0 \
     OPENFIRE_USER=openfire \
@@ -6,10 +6,14 @@ ENV OPENFIRE_VERSION=4.4.0 \
     OPENFIRE_LOG_DIR=/var/log/openfire
 
 RUN apt-get update \
+ && apt-get install openjdk-8-jre-headless -y
+
+RUN apt-get update \
  && DEBIAN_FRONTEND=noninteractive apt-get install -y sudo wget \
  && echo "Downloading openfire_${OPENFIRE_VERSION}_all.deb ..." \
- && wget --no-verbose "http://download.igniterealtime.org/openfire/openfire_${OPENFIRE_VERSION}_all.deb" -O /tmp/openfire_${OPENFIRE_VERSION}_all.deb \
- && dpkg -i /tmp/openfire_${OPENFIRE_VERSION}_all.deb \
+ && wget --no-verbose "http://download.igniterealtime.org/openfire/openfire_${OPENFIRE_VERSION}_all.deb" -O /tmp/openfire_${OPENFIRE_VERSION}_all.deb
+
+RUN dpkg -i /tmp/openfire_${OPENFIRE_VERSION}_all.deb \
  && mv /var/lib/openfire/plugins/admin /usr/share/openfire/plugin-admin \
  && rm -rf openfire_${OPENFIRE_VERSION}_all.deb \
  && rm -rf /var/lib/apt/lists/*

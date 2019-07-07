@@ -1,0 +1,33 @@
+version: '3.1'
+services:
+  openfire:
+    build: .docker
+    image: openfire-dev
+    ports:
+      - 9090:9090
+      - 9091:9091
+      - 5222:5222
+      - 7777:7777
+      - 7070:7070
+    volumes:
+      - ./data/openfire-data:/var/lib/openfire
+      - ./data/logs:/var/log/openfire
+    environment:
+      DAEMON_OPTS: -Xms32m -Xmx128m -Xss128k -Xoss128k -XX:ThreadStackSize=128 -XX:+PrintGCDetails -Xloggc:/var/log/openfire/gc.log -XX:+HeapDumpOnOutOfMemoryError
+    links:
+      - mysql_openfire
+    depends_on:
+      - mysql_openfire
+
+  mysql_openfire:
+    image: mysql
+    restart: unless-stopped
+    volumes:
+      - ./data/mysql_openfire-data:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: openfire
+      MYSQL_USER: openfire
+      MYSQL_PASSWORD: openfire
+    ports:
+      - 3306:3306

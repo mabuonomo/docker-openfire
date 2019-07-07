@@ -1,15 +1,20 @@
-FROM openjdk:8u212-jdk-slim
+FROM openjdk:8-jre-stretch
 
 ENV OPENFIRE_VERSION=4.4.0 \
     OPENFIRE_USER=openfire \
     OPENFIRE_DATA_DIR=/var/lib/openfire \
     OPENFIRE_LOG_DIR=/var/log/openfire
 
-RUN apt-get update \
- && apt-get install -y --no-install-recommends openjdk-8-jre-headless 
+# RUN apt-get update \
+#  && apt-get install -y --no-install-recommends default-jre-headless 
+# RUN apt-get update && \
+#     DEBIAN_FRONTEND=noninteractive \
+#     apt-get -y install default-jre-headless && \
+#     apt-get clean && \
+#     rm -rf /var/lib/apt/lists/*
 
 RUN apt-get update \
- && DEBIAN_FRONTEND=noninteractive apt-get install -y sudo wget \
+ && DEBIAN_FRONTEND=noninteractive apt-get install -y openjdk-8-jre sudo wget \
  && echo "Downloading openfire_${OPENFIRE_VERSION}_all.deb ..." \
  && wget --no-verbose "http://download.igniterealtime.org/openfire/openfire_${OPENFIRE_VERSION}_all.deb" -O /tmp/openfire_${OPENFIRE_VERSION}_all.deb
 

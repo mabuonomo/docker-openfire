@@ -1,0 +1,19 @@
+version: '3.1'
+services:
+  openfire:
+    links:
+      - mysql_openfire
+    depends_on:
+      - mysql_openfire
+
+  mysql_openfire:
+    image: mysql
+    volumes:
+      - ./data/mysql_openfire-data:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: openfire
+      MYSQL_USER: openfire
+      MYSQL_PASSWORD: openfire
+    ports:
+      - 3306:3306

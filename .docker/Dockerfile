@@ -5,14 +5,6 @@ ENV OPENFIRE_VERSION=4.4.0 \
     OPENFIRE_DATA_DIR=/var/lib/openfire \
     OPENFIRE_LOG_DIR=/var/log/openfire
 
-# RUN apt-get update \
-#  && apt-get install -y --no-install-recommends default-jre-headless 
-# RUN apt-get update && \
-#     DEBIAN_FRONTEND=noninteractive \
-#     apt-get -y install default-jre-headless && \
-#     apt-get clean && \
-#     rm -rf /var/lib/apt/lists/*
-
 RUN apt-get update \
  && DEBIAN_FRONTEND=noninteractive apt-get install -y openjdk-8-jre sudo wget \
  && echo "Downloading openfire_${OPENFIRE_VERSION}_all.deb ..." \
@@ -24,7 +16,6 @@ RUN dpkg -i /tmp/openfire_${OPENFIRE_VERSION}_all.deb \
  && rm -rf /var/lib/apt/lists/*
 
 COPY mysql-connector-java-8.0.12.jar /usr/share/openfire/lib/mysql.jar
-COPY openfire_mysql.sql /usr/share/openfire/resources/database/openfire_mysql.sql
 
 COPY entrypoint.sh /sbin/entrypoint.sh
 RUN chmod 755 /sbin/entrypoint.sh

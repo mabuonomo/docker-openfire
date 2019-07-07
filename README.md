@@ -4,18 +4,24 @@ This docker setup contains a stack with:
 * openfire v4.4.0
 
 ## Quickstart
-Start Openfire using:
+Start Openfire/MySQL using:
 
 ```bash
 $ docker-compose up
 ```
 
+Start only Openfire server using:
+
+```bash
+$ docker-compose up -f docker-compose.yml
+```
+
 ## Services
 * Openfire Admin Console > http://localhost:9090 
 
-## Openfire
+## Openfire connect to MySQL
 Use this db settings in openfire initial setup:
-* jdbc:mysql://database_srv:3306/openfire_db?rewriteBatchedStatements=true 
+* jdbc:mysql://mysql_openfire:3306/openfire?rewriteBatchedStatements=true 
 * user: openfire
 * pwd: openfire
 

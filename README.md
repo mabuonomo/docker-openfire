@@ -34,3 +34,7 @@ $ docker-compose stop
 $ docker-compose rm
 $ docker system prune --force --volumes
 ```
+
+## Based on
+* https://github.com/sameersbn/docker-openfire
+* https://github.com/juanromanf/openfire-stack

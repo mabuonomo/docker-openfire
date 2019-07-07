@@ -1,7 +1,7 @@
 version: '3.7'
 services:
   openfire:
-    build: .docker
+    image: sharksoft/openfire
     ports:
       - 9090:9090
       - 9091:9091

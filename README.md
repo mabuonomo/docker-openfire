@@ -7,16 +7,16 @@ This docker setup contains a stack with:
 https://cloud.docker.com/repository/docker/sharksoft/openfire
 
 ## Quickstart
-Start Openfire/MySQL using:
-
-```bash
-$ docker-compose up
-```
-
 Start only Openfire server using:
 
 ```bash
 $ docker-compose up -f docker-compose.yml
+```
+
+Start full stack Openfire/MySQL using:
+
+```bash
+$ docker-compose up
 ```
 
 ## Services

@@ -26,9 +26,9 @@ RUN dpkg -i /tmp/openfire_${OPENFIRE_VERSION}_all.deb \
 COPY mysql-connector-java-8.0.12.jar /usr/share/openfire/lib/mysql.jar
 COPY openfire_mysql.sql /usr/share/openfire/resources/database/openfire_mysql.sql
 
-# COPY entrypoint.sh /sbin/entrypoint.sh
-# RUN chmod 755 /sbin/entrypoint.sh
+COPY entrypoint.sh /sbin/entrypoint.sh
+RUN chmod 755 /sbin/entrypoint.sh
 
-EXPOSE 3478/tcp 3479/tcp 5222/tcp 5223/tcp 5229/tcp 5275/tcp 5276/tcp 5262/tcp 5263/tcp 7070/tcp 7443/tcp 7777/tcp 9090/tcp 9091/tcp
+EXPOSE 3478 3479 5222 5223 5229 5275 5276 5262 5263 7070 7443 7777 9090 9091
 VOLUME ["${OPENFIRE_DATA_DIR}"]
-# ENTRYPOINT ["/sbin/entrypoint.sh"]
+ENTRYPOINT ["/sbin/entrypoint.sh"]

@@ -1,4 +1,4 @@
-FROM openjdk:11.0.3-jdk-slim-stretch
+FROM openjdk:8u212-jdk-slim
 
 ENV OPENFIRE_VERSION=4.4.0 \
     OPENFIRE_USER=openfire \
@@ -6,7 +6,7 @@ ENV OPENFIRE_VERSION=4.4.0 \
     OPENFIRE_LOG_DIR=/var/log/openfire
 
 RUN apt-get update \
- && apt-get install openjdk-8-jre-headless -y
+ && apt-get install -y --no-install-recommends openjdk-8-jre-headless 
 
 RUN apt-get update \
  && DEBIAN_FRONTEND=noninteractive apt-get install -y sudo wget \
